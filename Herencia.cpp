@@ -11,6 +11,8 @@ Grupo y Grado 2P2*/
 using namespace std;
 
 
+
+
 //      ----Clases----
 
 //Clase Padre "Unidad"
@@ -28,7 +30,7 @@ class Unidad{
 };
 
 
-//Clase Civil hija de Unidad
+//Clase hija Civil de Unidad
 class Civil : public Unidad{
 
     private:
@@ -41,7 +43,7 @@ class Civil : public Unidad{
 };
 
 
-
+//Clase hija Infantry de Unidad
 class Infantry : public Unidad{
 
     private:
@@ -54,7 +56,7 @@ class Infantry : public Unidad{
 };
 
 
-
+//Clase hija InfantrySpecial de Infantry
 class InfantrySpecial : public Infantry{
 
     private:
@@ -64,9 +66,21 @@ class InfantrySpecial : public Infantry{
     public:
          InfantrySpecial(string , int , int , string);   
          void mostrarInfantrySpecial();
+};
 
+
+
+class Heroes : public InfantrySpecial{
+
+    private:
+        string skill;
+
+    public:
+        Heroes(string , int , int , string , string);
+        void mostrarHeroes();        
 
 };
+
 
 
 
@@ -94,9 +108,16 @@ Infantry::Infantry(string _name , int _life , int _damage) : Unidad(_name , _lif
     damage = _damage;
 }
 
+
 //Constructor infantrySpecial hija de Infantry
 InfantrySpecial::InfantrySpecial(string _name , int _life , int _damage , string _special) : Infantry(_name , _life , _damage){
     special = _special;
+}
+
+
+//Contrutor Heores hija de infantrySpecial
+Heroes::Heroes(string _name , int _life , int _damage , string _special , string _skill) : InfantrySpecial(_name , _life , _damage, _special){
+    skill = _skill;
 }
 
 
@@ -123,16 +144,20 @@ void Civil::mostrarCivil(){
 //Metodo mostrar de Infantry
 void Infantry::mostrarInfantry(){
     mostrarUnidad();
-    cout<<"El daño que tiene esta unidad de infanteria es: "<<damage<<endl;
+    cout<<"El deteriodo que tiene esta unidad de infanteria es: "<<damage<<endl;
 }
 
 
 
 //Metodo mostrar InfantrySpecial
 void InfantrySpecial::mostrarInfantrySpecial(){
-    mostrarUnidad();
     mostrarInfantry();
-    cout<<"La especialidad de la infanteria es de:"<<special<<endl;
+    cout<<"La especialidad de la infanteria es: "<<special<<endl;
+}
+
+void Heroes::mostrarHeroes(){
+    mostrarInfantrySpecial();
+    cout<<"La habilidad del heroe es: "<<skill<<endl;
 }
 
 
@@ -159,8 +184,13 @@ int main(){
 
 
     cout<<"\n\n--Infanteria Especial--"<<endl;
-    InfantrySpecial infantryspecial1("Espadachin" , 80 , 14 ,  "Hace mas daño por segundo" );
+    InfantrySpecial infantryspecial1("Espadachin" , 80 , 14 ,  "Hace mas deteriodo por segundo" );
     infantryspecial1.mostrarInfantrySpecial();
+
+
+    cout<<"--Heroes--"<<endl;
+    Heroes heroes1("william Wallace" , 200 , 18 , "Liderasgo" , "Moverse mas rapido");    
+    heroes1.mostrarHeroes();
 
 
     system("pause");
