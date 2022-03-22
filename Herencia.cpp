@@ -69,7 +69,7 @@ class InfantrySpecial : public Infantry{
 };
 
 
-
+//Clase hija Heroes de InfantrySpecial
 class Heroes : public InfantrySpecial{
 
     private:
@@ -82,7 +82,15 @@ class Heroes : public InfantrySpecial{
 };
 
 
+class UniDistance : public Unidad{
 
+    private:
+        int distance;
+
+    public:
+        UniDistance(string , int , int);  
+    void  mostrarUniDistance();
+};
 
 
 
@@ -115,9 +123,15 @@ InfantrySpecial::InfantrySpecial(string _name , int _life , int _damage , string
 }
 
 
-//Contrutor Heores hija de infantrySpecial
+//Contrutor Heroes hija de infantrySpecial
 Heroes::Heroes(string _name , int _life , int _damage , string _special , string _skill) : InfantrySpecial(_name , _life , _damage, _special){
     skill = _skill;
+}
+
+
+//Constructor de UniDistace de Unidad
+UniDistance::UniDistance(string _name , int _life , int _distance) : Unidad(_name , _life){
+    distance = _distance;
 }
 
 
@@ -155,9 +169,18 @@ void InfantrySpecial::mostrarInfantrySpecial(){
     cout<<"La especialidad de la infanteria es: "<<special<<endl;
 }
 
+
+//Metodo mostrar Heroe
 void Heroes::mostrarHeroes(){
     mostrarInfantrySpecial();
     cout<<"La habilidad del heroe es: "<<skill<<endl;
+}
+
+
+//Metodo mostra de UniDistance
+void UniDistance::mostrarUniDistance(){
+    mostrarUnidad();
+    cout<<"El proyectil de la unidad puede llegar hasta: "<<distance<<" metros"<<endl;
 }
 
 
@@ -170,7 +193,7 @@ int main(){
 	cout<<"\t\tHector Mauricio Rodriguez Salazar 21310314"<<endl;
 	cout<<"\n\n\t\tPrograma con Herencia"<<endl;
 
-    cout<<"--Unidad--"<<endl;
+    cout<<"\n\n--Unidad--"<<endl;
     Unidad unidad1("Caballero" , 80);
     unidad1.mostrarUnidad();
 
@@ -188,10 +211,14 @@ int main(){
     infantryspecial1.mostrarInfantrySpecial();
 
 
-    cout<<"--Heroes--"<<endl;
+    cout<<"\n\n--Heroes--"<<endl;
     Heroes heroes1("william Wallace" , 200 , 18 , "Liderasgo" , "Moverse mas rapido");    
     heroes1.mostrarHeroes();
 
+
+    cout<<"\n\n--Unidad de distancia--"<<endl;
+    UniDistance unidistance1("Arquero", 35 , 6); 
+    unidistance1.mostrarUniDistance();
 
     system("pause");
     return 0;
