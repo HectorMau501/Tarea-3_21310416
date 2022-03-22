@@ -45,13 +45,29 @@ class Civil : public Unidad{
 class Infantry : public Unidad{
 
     private:
-    int damage; 
+        int damage; 
 
 
     public:
         Infantry(string , int , int);
         void mostrarInfantry();
 };
+
+
+
+class InfantrySpecial : public Infantry{
+
+    private:
+        string special;
+
+
+    public:
+         InfantrySpecial(string , int , int , string);   
+         void mostrarInfantrySpecial();
+
+
+};
+
 
 
 
@@ -78,6 +94,12 @@ Infantry::Infantry(string _name , int _life , int _damage) : Unidad(_name , _lif
     damage = _damage;
 }
 
+//Constructor infantrySpecial hija de Infantry
+InfantrySpecial::InfantrySpecial(string _name , int _life , int _damage , string _special) : Infantry(_name , _life , _damage){
+    special = _special;
+}
+
+
 
 
 //      ----Metodos----
@@ -100,9 +122,18 @@ void Civil::mostrarCivil(){
 
 //Metodo mostrar de Infantry
 void Infantry::mostrarInfantry(){
+    mostrarUnidad();
     cout<<"El daño que tiene esta unidad de infanteria es: "<<damage<<endl;
 }
 
+
+
+//Metodo mostrar InfantrySpecial
+void InfantrySpecial::mostrarInfantrySpecial(){
+    mostrarUnidad();
+    mostrarInfantry();
+    cout<<"La especialidad de la infanteria es de:"<<special<<endl;
+}
 
 
 
@@ -115,34 +146,26 @@ int main(){
 	cout<<"\n\n\t\tPrograma con Herencia"<<endl;
 
     cout<<"--Unidad--"<<endl;
-    //Objeto de unidad
     Unidad unidad1("Caballero" , 80);
     unidad1.mostrarUnidad();
 
     cout<<"\n\n--Civil--"<<endl;
-    //Objeto de civil
     Civil civil1("Aldeano" , 50 , "Edificios , Casas , Cuarteles." , "Unidades de asedio , Edificios , Casas , Cuarteles.");
     civil1.mostrarCivil();
 
     cout<<"\n\n--Infanteria--"<<endl;
-    //Objeto de la infantry
-    Infantry infantry1("Espadachin" , 75 , 12);
+    Infantry infantry1("Hombre con Espada" , 75 , 12);
     infantry1.mostrarInfantry();
+
+
+    cout<<"\n\n--Infanteria Especial--"<<endl;
+    InfantrySpecial infantryspecial1("Espadachin" , 80 , 14 ,  "Hace mas daño por segundo" );
+    infantryspecial1.mostrarInfantrySpecial();
 
 
     system("pause");
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
