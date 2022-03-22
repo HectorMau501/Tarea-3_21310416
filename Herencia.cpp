@@ -42,7 +42,16 @@ class Civil : public Unidad{
 
 
 
+class Infantry : public Unidad{
 
+    private:
+    int damage; 
+
+
+    public:
+        Infantry(string , int , int);
+        void mostrarInfantry();
+};
 
 
 
@@ -64,6 +73,11 @@ Civil::Civil(string _name , int _life , string _build , string _repair) : Unidad
 }
 
 
+//Constructor infantry hija de Unidad
+Infantry::Infantry(string _name , int _life , int _damage) : Unidad(_name , _life){
+    damage = _damage;
+}
+
 
 
 //      ----Metodos----
@@ -84,6 +98,12 @@ void Civil::mostrarCivil(){
 }
 
 
+//Metodo mostrar de Infantry
+void Infantry::mostrarInfantry(){
+    cout<<"El daño que tiene esta unidad de infanteria es: "<<damage<<endl;
+}
+
+
 
 
 
@@ -95,12 +115,20 @@ int main(){
 	cout<<"\n\n\t\tPrograma con Herencia"<<endl;
 
     cout<<"--Unidad--"<<endl;
+    //Objeto de unidad
     Unidad unidad1("Caballero" , 80);
     unidad1.mostrarUnidad();
 
     cout<<"\n\n--Civil--"<<endl;
+    //Objeto de civil
     Civil civil1("Aldeano" , 50 , "Edificios , Casas , Cuarteles." , "Unidades de asedio , Edificios , Casas , Cuarteles.");
     civil1.mostrarCivil();
+
+    cout<<"\n\n--Infanteria--"<<endl;
+    //Objeto de la infantry
+    Infantry infantry1("Espadachin" , 75 , 12);
+    infantry1.mostrarInfantry();
+
 
     system("pause");
     return 0;
