@@ -82,6 +82,7 @@ class Heroes : public InfantrySpecial{
 };
 
 
+//Clase hija UniDistance de Unidad
 class UniDistance : public Unidad{
 
     private:
@@ -89,9 +90,21 @@ class UniDistance : public Unidad{
 
     public:
         UniDistance(string , int , int);  
-    void  mostrarUniDistance();
+        void  mostrarUniDistance();
 };
 
+
+class Cannon : public UniDistance{
+
+    private:
+        int damage;
+
+    public:
+        Cannon(string , int , int , int);    
+        void mostrarCannon();
+
+
+};
 
 
 //      ----Constructores----
@@ -135,6 +148,11 @@ UniDistance::UniDistance(string _name , int _life , int _distance) : Unidad(_nam
 }
 
 
+//Constructor de Cannons
+Cannon::Cannon(string _name , int _life , int _distance , int _damage) : UniDistance(_name , _life , _distance){
+    damage = _damage;
+}
+
 
 
 //      ----Metodos----
@@ -162,7 +180,6 @@ void Infantry::mostrarInfantry(){
 }
 
 
-
 //Metodo mostrar InfantrySpecial
 void InfantrySpecial::mostrarInfantrySpecial(){
     mostrarInfantry();
@@ -177,13 +194,23 @@ void Heroes::mostrarHeroes(){
 }
 
 
-//Metodo mostra de UniDistance
+//Metodo mostrar de UniDistance
 void UniDistance::mostrarUniDistance(){
     mostrarUnidad();
     cout<<"El proyectil de la unidad puede llegar hasta: "<<distance<<" metros"<<endl;
 }
 
 
+//Metodo mostrar de Cannons
+void Cannon::mostrarCannon(){
+    mostrarUniDistance();
+    cout<<"El deteriodo que tiene esta maquinaria es: "<<damage<<endl;
+}
+
+
+
+
+//Metodo 
 
 
 //Funcion Principal
@@ -219,6 +246,12 @@ int main(){
     cout<<"\n\n--Unidad de distancia--"<<endl;
     UniDistance unidistance1("Arquero", 35 , 6); 
     unidistance1.mostrarUniDistance();
+
+    cout<<"\n\n--Maquinaria--"<<endl;
+    Cannon cannon1("Catapulta", 80 , 16 , 250);
+    cannon1.mostrarCannon();
+
+
 
     system("pause");
     return 0;
