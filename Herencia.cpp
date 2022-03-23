@@ -107,6 +107,17 @@ class Cannon : public UniDistance{
 };
 
 
+class UniMonted : public Unidad{
+    private:
+        int speed;
+
+    public:
+        UniMonted(string , int, int);    
+        void mostrarUniMonted();
+};
+
+
+
 //      ----Constructores----
 
 
@@ -153,6 +164,11 @@ Cannon::Cannon(string _name , int _life , int _distance , int _damage) : UniDist
     damage = _damage;
 }
 
+
+//Constructor UniMontend
+UniMonted::UniMonted(string _name , int _life, int _speed) : Unidad(_name , _life){
+    speed = _speed;
+}
 
 
 //      ----Metodos----
@@ -201,12 +217,18 @@ void UniDistance::mostrarUniDistance(){
 }
 
 
-//Metodo mostrar de Cannons
+//Metodo mostrar de Cannon
 void Cannon::mostrarCannon(){
     mostrarUniDistance();
     cout<<"El deteriodo que tiene esta maquinaria es: "<<damage<<endl;
 }
 
+
+//Metodo mostrar de UniMontand
+void UniMonted::mostrarUniMonted(){
+    mostrarUnidad();
+    cout<<"La velocidad de la unidad montada es: "<<speed<<" Km/h"<<endl;
+}
 
 
 
@@ -247,13 +269,18 @@ int main(){
     UniDistance unidistance1("Arquero", 35 , 6); 
     unidistance1.mostrarUniDistance();
 
+
     cout<<"\n\n--Maquinaria--"<<endl;
     Cannon cannon1("Catapulta", 80 , 16 , 250);
     cannon1.mostrarCannon();
 
 
+    cout<<"\n\n--Unidad Montada--"<<endl;
+    UniMonted unimonted1("Jinete" , 90 , 35);
+    unimonted1.mostrarUniMonted();
 
-    system("pause");
+    cout<<"\n\n\t---Fin---"<<endl;
+        system("pause");
     return 0;
 }
 
